@@ -1,52 +1,23 @@
 # Minecraft Mob Detection
 
-Проект спринта 5 по детекции персонажей Minecraft с использованием FCOS и YOLO.
+Проект по детекции мобов Minecraft двумя моделями: `FCOS` из MMDetection и `YOLOv8s` из Ultralytics. Основной сценарий работы собран в [notebook.ipynb](/Users/borisfox/Documents/ML/nn/sprint%205/project/mmdetection/notebook.ipynb): EDA, подготовка данных, обучение, инференс и сравнение результатов.
 
-## Структура
+## Что внутри
 
-- `datasets/minecraft/` — датасет в формате COCO и `data.yaml` для YOLO.
-- `artifacts/` — метрики, инференс, видео, веса и отчёт.
-- `configs/fcos/fcos_minecraft.py` — пользовательский конфиг FCOS.
-- `notebook.ipynb` — ноутбук для EDA, обучения, инференса и сравнения моделей.
-- `project_tools/` — Python-модули, которые используются из ноутбука.
-- `ENVIRONMENT.md` — инструкция по локальной настройке окружения.
+- `datasets/minecraft/` — датасет и аннотации.
+- `configs/fcos/fcos_minecraft.py` — конфиг FCOS под датасет проекта.
+- `project_tools/` — вспомогательные модули для ноутбука.
+- `artifacts/` — веса моделей, метрики, примеры инференса, видео и итоговый отчёт.
+- `setup_env.sh` — подготовка окружения для локального запуска или GPU-ВМ.
 
-## Git и перенос на ВМ
+## Результат
 
-В Git-репозиторий включены код, конфиги и ноутбук.
-Локальные данные, веса, артефакты и виртуальное окружение исключены через `.gitignore`.
+По итоговым тестовым метрикам в проекте лучше показала себя `YOLOv8s`: она заметно опережает FCOS как по качеству детекции, так и по скорости инференса. Сводка и примеры результатов собраны в [artifacts/report.pdf](/Users/borisfox/Documents/ML/nn/sprint%205/project/mmdetection/artifacts/report.pdf).
 
-Для запуска на GPU-ВМ:
+## Как запустить
 
-1. Клонировать репозиторий.
-2. Скопировать `datasets/` напрямую на ВМ отдельно от Git.
-3. Поднять окружение через `setup_env.sh`.
-4. Запустить обучение из `notebook.ipynb` или через helper-скрипты.
+1. Подготовить окружение через `setup_env.sh`.
+2. Положить датасет в `datasets/minecraft/`.
+3. Открыть и выполнить [notebook.ipynb](/Users/borisfox/Documents/ML/nn/sprint%205/project/mmdetection/notebook.ipynb).
 
-## Датасет
-
-Используемые классы:
-
-- `bee`
-- `chicken`
-- `cow`
-- `creeper`
-- `enderman`
-- `fox`
-- `frog`
-- `ghast`
-- `goat`
-- `llama`
-- `pig`
-- `sheep`
-- `skeleton`
-- `spider`
-- `turtle`
-- `wolf`
-- `zombie`
-
-## Следующие шаги
-
-1. Проверить COCO-аннотации и выполнить EDA в ноутбуке.
-2. Подготовить конфиг FCOS и `data.yaml` для YOLO.
-3. Запустить дообучение моделей и сохранить артефакты в `artifacts/`.
+Для запуска на GPU-ВМ удобнее копировать проект и датасет напрямую, а не хранить большие артефакты в Git.

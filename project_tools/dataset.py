@@ -124,9 +124,15 @@ def prepare_yolo_labels(dataset_root: str | Path) -> dict[str, Path]:
         "test": "test_annotations.json",
     }
     for split, ann_name in split_mapping.items():
+        legacy_labels_dir = dataset_root / split / "labels"
+        if legacy_labels_dir.exists():
+            for old_label in legacy_labels_dir.glob("*.txt"):
+                old_label.unlink()
+            legacy_labels_dir.rmdir()
+
         outputs[split] = convert_coco_split_to_yolo(
             annotation_path=annotations_root / ann_name,
             images_dir=dataset_root / split,
-            labels_dir=dataset_root / split / "labels",
+            labels_dir=dataset_root / split,
         )
     return outputs

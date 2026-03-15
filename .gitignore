@@ -12,6 +12,12 @@ tools
 configs/_base_
 
 artifacts/
+!artifacts/
+artifacts/*
+!artifacts/report.pdf
+!artifacts/metrics/
+artifacts/metrics/*
+!artifacts/metrics/metrics_comparison.csv
 checkpoints/
 
 datasets/
