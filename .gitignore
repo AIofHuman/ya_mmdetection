@@ -9,6 +9,7 @@ __pycache__/
 .home/
 runs/
 tools
+configs/_base_
 
 artifacts/
 checkpoints/
