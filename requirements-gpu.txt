@@ -1,0 +1,8 @@
+# Install PyTorch separately for your CUDA version before this file.
+# Example for CUDA 11.8:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+-r requirements.txt
+
+# Install full MMCV after base deps:
+# python -m mim install "mmcv>=2.0.0,<2.2.0"
